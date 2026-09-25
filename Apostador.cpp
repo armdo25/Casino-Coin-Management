@@ -1,33 +1,32 @@
 #include "Apostador.hpp"
-#include <iomanip>
 
-Apostador::Apostador(int idApostador, string nombre, int numeroApuestas,
-                     double totalApostado, double gananciaNeta) {
-    this->idApostador = idApostador;
+Apostador::Apostador(int id, string nombre, int apuestas,
+                     double totalApostado, double ganancia) {
+    this->id = id;
     this->nombre = nombre;
-    this->numeroApuestas = numeroApuestas;
+    this->apuestas = apuestas;
     this->totalApostado = totalApostado;
-    this->gananciaNeta = gananciaNeta;
+    this->ganancia = ganancia;
 }
 
-int Apostador::getIdApostador() {
-    return idApostador;
+int Apostador::getId() {
+    return id;
 }
 
 string Apostador::getNombre() {
     return nombre;
 }
 
-int Apostador::getNumeroApuestas() {
-    return numeroApuestas;
+int Apostador::getApuestas() {
+    return apuestas;
 }
 
 double Apostador::getTotalApostado() {
     return totalApostado;
 }
 
-double Apostador::getGananciaNeta() {
-    return gananciaNeta;
+double Apostador::getGanancia() {
+    return ganancia;
 }
 
 double Apostador::calcularRendimiento() {
@@ -35,26 +34,23 @@ double Apostador::calcularRendimiento() {
         return 0;
     }
 
-    return (gananciaNeta / totalApostado) * 100;
+    return (ganancia / totalApostado) * 100;
 }
 
 string Apostador::obtenerCategoria() {
-    //Para efectos de esta simulacion se pide un minimo de 10 apuestas
-    //y rendimiento positivo para mostrar al jugador como profesional.
-    if (numeroApuestas >= 10 && calcularRendimiento() > 0) {
+    if (apuestas >= 10 && calcularRendimiento() > 0) {
         return "Profesional";
     }
 
     return "Comun";
 }
 
-void Apostador::mostrarApostador() {
-    cout << fixed << setprecision(2);
-    cout << "ID: " << idApostador << endl;
+void Apostador::mostrar() {
+    cout << "ID: " << id << endl;
     cout << "Nombre: " << nombre << endl;
-    cout << "Numero de apuestas: " << numeroApuestas << endl;
+    cout << "Apuestas: " << apuestas << endl;
     cout << "Total apostado: $" << totalApostado << endl;
-    cout << "Ganancia neta: $" << gananciaNeta << endl;
+    cout << "Ganancia: $" << ganancia << endl;
     cout << "Rendimiento: " << calcularRendimiento() << "%" << endl;
     cout << "Categoria: " << obtenerCategoria() << endl;
 }
