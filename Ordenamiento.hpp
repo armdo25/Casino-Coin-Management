@@ -1,6 +1,6 @@
 /*
-    La clase Ordenamiento contiene el algoritmo MergeSort utilizado en el primer avance.
-    El vector de apostadores se ordena de mayor a menor de acuerdo con su rendimiento.
+    La clase Ordenamiento contiene el algoritmo MergeSort y 
+    el vector de apostadores se ordena de mayor a menor de acuerdo con su rendimiento.
 */
 
 #ifndef ORDENAMIENTO_HPP
@@ -13,11 +13,11 @@ using namespace std;
 
 class Ordenamiento {
 private:
-    void merge(vector<Apostador>& apostadores, int inicio, int medio, int fin);
-    void mergeSort(vector<Apostador>& apostadores, int inicio, int fin);
+    void merge(vector<Apostador>&, int, int, int);
+    void mergeSort(vector<Apostador>&, int, int);
 
 public:
-    void ordenarPorRendimiento(vector<Apostador>& apostadores);
+    void ordenar(vector<Apostador>&);
 };
 
 #endif
