@@ -1,6 +1,6 @@
 /*
     La clase Apostador representa el resumen de actividad de un usuario dentro de Casino Coin.
-    Para este primer avance no se simulan apuestas una por una, sino que se usan datos historicos
+    Para este primer avance no se simulan apuestas una por una, sino que se usan datos históricos
     resumidos.
 */
 
@@ -14,29 +14,24 @@ using namespace std;
 
 class Apostador {
 private:
-    int idApostador;
+    int id;
     string nombre;
-    int numeroApuestas;
+    int apuestas;
     double totalApostado;
-    double gananciaNeta;
+    double ganancia;
 
 public:
-    Apostador(int idApostador, string nombre, int numeroApuestas,
-              double totalApostado, double gananciaNeta);
+    Apostador(int, string, int, double, double);
 
-    int getIdApostador();
+    int getId();
     string getNombre();
-    int getNumeroApuestas();
+    int getApuestas();
     double getTotalApostado();
-    double getGananciaNeta();
+    double getGanancia();
 
-    //Calcula el rendimiento del jugador con respecto al dinero total apostado.
     double calcularRendimiento();
-
-    //Clasificacion interna del proyecto, no intenta representar una regla real de un casino.
     string obtenerCategoria();
-
-    void mostrarApostador();
+    void mostrar();
 };
 
 #endif
