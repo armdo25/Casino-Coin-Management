@@ -1,7 +1,7 @@
 /*
     La clase Apostador representa el resumen de actividad de un usuario dentro de Casino Coin.
     Para este primer avance no se simulan apuestas una por una, sino que se usan datos historicos
-    resumidos para poder enfocarnos en el tema principal de la materia: ordenar una serie de datos.
+    resumidos.
 */
 
 #ifndef APOSTADOR_HPP
