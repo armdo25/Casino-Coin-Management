@@ -1,10 +1,10 @@
 # Casino-Coin-Management
 
-Casino Coin Management es una continuación de mi proyecto anterior de apuestas deportivas en C++. En esta nueva versión se busca aprovechar los datos de los apostadores para poder organizarlos y analizar su rendimiento.
+Casino Coin Management es una herramienta que continúa mi proyecto anterior de apuestas deportivas en C++. En esta proyecto se busca aprovechar los datos de los apostadores para poder organizarlos y analizar su rendimiento.
 
 El programa guarda información de diferentes apostadores, como su nombre, número de apuestas, dinero total apostado y ganancia o pérdida. A partir de estos datos se calcula su rendimiento y se utiliza un algoritmo de ordenamiento para acomodarlos de mayor a menor.
 
-También se hace una clasificación sencilla entre apostadores comunes y profesionales. Para este proyecto se considera profesional a un apostador que tenga mínimo 10 apuestas registradas y que tenga un rendimiento positivo. Esta regla solamente se usa para la simulación del proyecto.
+También se hace una clasificación sencilla entre apostadores comunes y profesionales, osea, ara este proyecto se considera profesional a un apostador que tenga mínimo 10 apuestas registradas y que tenga un rendimiento positivo. Esta regla solamente se usa para la simulación del proyecto.
 
 
 # Descripción del avance 1
@@ -39,29 +39,9 @@ Por el momento los datos se encuentran directamente en el `main.cpp`, ya que en 
 Para compilar el programa se utiliza:
 
 ```text
-g++ main.cpp Apostador.cpp Ordenamiento.cpp -std=c++11 -o primer_avance
+g++ main.cpp Apostador.cpp Ordenamiento.cpp 
 ```
 
-En Windows también se puede utilizar:
-
-```text
-g++ main.cpp Apostador.cpp Ordenamiento.cpp -std=c++11 -o primer_avance.exe
-```
-
-
-# Instrucciones para ejecutar el avance de proyecto
-
-En Windows:
-
-```text
-.\primer_avance.exe
-```
-
-En Mac o Linux:
-
-```text
-./primer_avance
-```
 
 Al ejecutar el programa aparece un menú parecido al siguiente:
 
