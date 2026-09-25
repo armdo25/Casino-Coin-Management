@@ -1,230 +1,131 @@
-# Casino Coin Management
+# Casino-Coin-Management
 
-## Clasificación de apostadores en el casino online para medición de riesgos
+Casino Coin Management es una continuación de mi proyecto anterior de apuestas deportivas en C++. En esta nueva versión se busca aprovechar los datos de los apostadores para poder organizarlos y analizar su rendimiento.
 
-Casino Coin Management es una continuación de mi proyecto anterior de apuestas deportivas en C++. En esta nueva versión el objetivo principal ya no es solamente registrar apuestas, sino utilizar los datos generados por los apostadores para analizarlos y organizarlos.
+El programa guarda información de diferentes apostadores, como su nombre, número de apuestas, dinero total apostado y ganancia o pérdida. A partir de estos datos se calcula su rendimiento y se utiliza un algoritmo de ordenamiento para acomodarlos de mayor a menor.
 
-Para este primer avance se guarda un resumen del historial de cada apostador, como el número de apuestas realizadas, el dinero total apostado y su ganancia o pérdida neta. Con estos datos el programa calcula el rendimiento de cada apostador y utiliza **MergeSort** para ordenarlos de mayor a menor.
+También se hace una clasificación sencilla entre apostadores comunes y profesionales. Para este proyecto se considera profesional a un apostador que tenga mínimo 10 apuestas registradas y que tenga un rendimiento positivo. Esta regla solamente se usa para la simulación del proyecto.
 
-Después se muestra una clasificación sencilla entre apostadores comunes y profesionales. Para este proyecto se considera profesional a un apostador que tenga al menos 10 apuestas registradas y un rendimiento positivo. Esta clasificación es una regla utilizada dentro de la simulación del proyecto.
 
----
+# Descripción del avance 1
 
-## Descripción del avance 1
+En este primer avance se trabajó principalmente con el ordenamiento de los datos.
 
-En este avance se desarrolló una primera versión funcional enfocada principalmente en algoritmos de ordenamiento.
+Se creó una clase `Apostador` que guarda la información de cada jugador y una clase `Ordenamiento` donde se encuentra el algoritmo MergeSort.
 
-Se creó la clase `Apostador` para representar los datos que se quieren analizar y la clase `Ordenamiento` para separar la implementación de MergeSort del resto del programa.
+Los apostadores se guardan dentro de un vector y cada uno contiene:
 
-El programa contiene varios apostadores de prueba almacenados en un `vector`. Cada apostador tiene los siguientes datos:
+- ID
+- Nombre
+- Número de apuestas
+- Dinero total apostado
+- Ganancia o pérdida neta
 
-- ID.
-- Nombre.
-- Número de apuestas realizadas.
-- Total de dinero apostado.
-- Ganancia o pérdida neta.
-
-A partir de estos datos se calcula el rendimiento con la siguiente operación:
+El rendimiento se calcula de la siguiente manera:
 
 ```text
 rendimiento = (gananciaNeta / totalApostado) * 100
 ```
 
-Después, MergeSort ordena el vector de apostadores utilizando el rendimiento como criterio. El orden se realiza de mayor a menor para que primero aparezcan los jugadores con mejor resultado histórico.
+Después se utiliza MergeSort para ordenar los apostadores desde el que tiene mayor rendimiento hasta el que tiene menor rendimiento.
 
-También se pueden mostrar solamente los apostadores comunes o solamente los apostadores profesionales.
+El programa también cuenta con un menú donde se pueden consultar todos los apostadores, ordenarlos por rendimiento o mostrar solamente los comunes o profesionales.
 
-Por el momento no se agregó una simulación de apuestas en tiempo real, ya que el objetivo principal de este avance es demostrar el uso correcto de un algoritmo de ordenamiento. Los datos de prueba se cargan directamente en `main.cpp`.
+Por el momento los datos se encuentran directamente en el `main.cpp`, ya que en este avance lo importante es probar el algoritmo de ordenamiento. Más adelante estos datos podrían salir del historial de apuestas del proyecto original de Casino Coin.
 
-En avances posteriores se podría conectar esta parte con el sistema original de Casino Coin para obtener los datos directamente del historial de apuestas o desde un archivo.
 
----
+# Instrucciones para compilar el avance de proyecto
 
-## Instrucciones para compilar el avance de proyecto
+Para compilar el programa se utiliza:
 
-Ejecuta el siguiente comando en la terminal dentro de la carpeta del proyecto:
-
-```bash
+```text
 g++ main.cpp Apostador.cpp Ordenamiento.cpp -std=c++11 -o primer_avance
 ```
 
-En Windows utilizando MinGW también se puede generar un archivo ejecutable con extensión `.exe`:
+En Windows también se puede utilizar:
 
-```bash
+```text
 g++ main.cpp Apostador.cpp Ordenamiento.cpp -std=c++11 -o primer_avance.exe
 ```
 
----
 
-## Instrucciones para ejecutar el avance de proyecto
+# Instrucciones para ejecutar el avance de proyecto
 
-### macOS o Linux
+En Windows:
 
-```bash
-./primer_avance
-```
-
-### Windows
-
-```bash
+```text
 .\primer_avance.exe
 ```
 
-Al ejecutar el programa se muestra el siguiente menú:
+En Mac o Linux:
+
+```text
+./primer_avance
+```
+
+Al ejecutar el programa aparece un menú parecido al siguiente:
 
 ```text
 ===== CASINO COIN - ANALISIS DE APOSTADORES =====
 
 1. Ver los datos almacenados
 2. Ordenar los apostadores por rendimiento
-3. Mostrar solamente apostadores comunes
-4. Mostrar solamente apostadores profesionales
+3. Mostrar apostadores comunes
+4. Mostrar apostadores profesionales
 5. Salir
 ```
 
-El usuario selecciona una opción escribiendo un número del `1` al `5`.
 
----
+# Descripción de las entradas del avance de proyecto
 
-## Descripción de las entradas del avance de proyecto
+En este avance los datos de los apostadores ya se encuentran guardados directamente en el programa.
 
-En este avance no se utiliza un archivo externo como entrada.
+Cada apostador tiene un ID, nombre, cantidad de apuestas, dinero apostado y su ganancia o pérdida.
 
-Los datos iniciales de los apostadores están declarados directamente en `main.cpp` para mantener el avance concentrado en el algoritmo de ordenamiento.
+La entrada que realiza el usuario es principalmente la opción del menú, ingresando un número del 1 al 5 dependiendo de lo que quiera hacer.
 
-Cada apostador de prueba contiene:
 
-- ID del apostador.
-- Nombre.
-- Número de apuestas realizadas.
-- Total de dinero apostado.
-- Ganancia o pérdida neta.
+# Descripción de las salidas del avance de proyecto
 
-La entrada directa del usuario es la opción seleccionada dentro del menú.
+El programa muestra los datos de los apostadores directamente en la consola.
 
-El programa recibe un número entero del `1` al `5` para decidir qué información mostrar o si debe ejecutar MergeSort.
+Dependiendo de la opción seleccionada se pueden mostrar todos los apostadores, ordenarlos por rendimiento o mostrar solamente los apostadores comunes o profesionales.
 
----
+También se muestra el rendimiento de cada uno para poder observar más fácilmente la diferencia entre los resultados de los jugadores.
 
-## Descripción de las salidas del avance de proyecto
 
-El programa muestra los resultados directamente en consola.
+# Desarrollo de competencias
 
-Dependiendo de la opción seleccionada se pueden observar:
+## SICT0301: Evalúa los componentes
 
-- Todos los apostadores almacenados.
-- Los apostadores ordenados de mayor a menor rendimiento.
-- Solamente los apostadores comunes.
-- Solamente los apostadores profesionales.
-- El rendimiento calculado de cada apostador.
-- Los datos principales de cada jugador.
+### Hace un análisis de complejidad correcto y completo para los algoritmos de ordenamiento usados en el programa
 
-Un ejemplo del tipo de información mostrada es:
+El algoritmo utilizado en el proyecto es MergeSort.
 
-```text
-ID: 1
-Nombre: Luis
-Apuestas realizadas: 18
-Total apostado: $12500
-Ganancia neta: $1650
-Rendimiento: 13.20%
-Clasificacion: Profesional
-```
+MergeSort divide el vector de apostadores en partes más pequeñas hasta tener elementos individuales. Después vuelve a juntar las partes mientras compara el rendimiento de los apostadores para acomodarlos.
 
-El resultado principal de este avance es poder ordenar los datos almacenados utilizando el rendimiento del apostador como criterio.
+Como el vector se divide aproximadamente a la mitad cada vez, se tienen aproximadamente `log n` niveles. En cada nivel se recorren los elementos para volverlos a juntar, por lo que el algoritmo tiene una complejidad de `O(n log n)`.
 
----
+Sus complejidades son:
 
-## Desarrollo de competencias
+- Mejor caso: `O(n log n)`
+- Caso promedio: `O(n log n)`
+- Peor caso: `O(n log n)`
+- Complejidad de espacio: `O(n)`
 
-### SICT0301: Evalúa los componentes
+La complejidad de espacio es `O(n)` porque se utilizan vectores auxiliares para poder combinar los elementos durante el ordenamiento.
 
-#### Hace un análisis de complejidad correcto y completo para los algoritmos de ordenamiento usados en el programa
+Este algoritmo se puede observar en los archivos `Ordenamiento.hpp` y `Ordenamiento.cpp`.
 
-Para ordenar los apostadores se utiliza **MergeSort**.
 
-MergeSort funciona dividiendo el conjunto de datos en partes cada vez más pequeñas hasta llegar a elementos individuales. Después combina nuevamente estas partes mientras las acomoda de acuerdo con el criterio seleccionado.
+## SICT0302: Toma decisiones
 
-En este proyecto el criterio utilizado es el rendimiento de cada apostador.
+### Selecciona un algoritmo de ordenamiento adecuado al problema y lo usa correctamente
 
-La recurrencia general de MergeSort se puede representar como:
+Para el proyecto decidí utilizar MergeSort porque permite ordenar los apostadores de acuerdo con su rendimiento y mantiene una complejidad de `O(n log n)` incluso en el peor caso.
 
-```text
-T(n) = 2T(n/2) + O(n)
-```
+También existen algoritmos más sencillos como Bubble Sort, Selection Sort o Insertion Sort, pero estos pueden llegar a una complejidad de `O(n²)`.
 
-El algoritmo divide el conjunto aproximadamente a la mitad en cada nivel, por lo que existen aproximadamente:
+Como en un casino pueden existir muchos apostadores, MergeSort me pareció una mejor opción para organizar los datos conforme aumente la cantidad de usuarios.
 
-```text
-log2(n)
-```
-
-niveles de división.
-
-En cada nivel se recorren aproximadamente los `n` elementos durante el proceso de combinación. Por esta razón, la complejidad temporal final es:
-
-```text
-O(n log n)
-```
-
-### Complejidad temporal
-
-| Caso | Complejidad |
-|---|---|
-| Mejor caso | O(n log n) |
-| Caso promedio | O(n log n) |
-| Peor caso | O(n log n) |
-
-Una ventaja de MergeSort es que mantiene la misma complejidad temporal incluso en el peor caso.
-
-### Complejidad espacial
-
-La implementación necesita vectores auxiliares durante el proceso de combinación, por lo que la complejidad espacial es:
-
-```text
-O(n)
-```
-
-En este avance esta competencia se puede observar principalmente en los archivos `Ordenamiento.hpp` y `Ordenamiento.cpp`, donde se encuentra la implementación del algoritmo.
-
----
-
-### SICT0302: Toma decisiones
-
-#### Selecciona un algoritmo de ordenamiento adecuado al problema y lo usa correctamente
-
-Para este proyecto seleccioné **MergeSort** porque necesito ordenar una colección de apostadores utilizando su rendimiento como criterio.
-
-El programa puede aumentar la cantidad de apostadores almacenados conforme se agreguen más datos. Por esta razón preferí utilizar un algoritmo con complejidad `O(n log n)` en lugar de algoritmos como Bubble Sort, Selection Sort o Insertion Sort, que pueden llegar a tener una complejidad de `O(n²)`.
-
-Otra razón para seleccionar MergeSort es que su peor caso también tiene una complejidad de:
-
-```text
-O(n log n)
-```
-
-Esto permite tener un comportamiento más constante aunque aumente la cantidad de apostadores.
-
-En el programa, MergeSort recibe el vector de apostadores y compara el rendimiento de los elementos para organizarlos de mayor a menor.
-
-Por ejemplo, si existen los siguientes rendimientos:
-
-```text
-5.2%
--3.4%
-13.7%
-2.1%
-```
-
-después de utilizar MergeSort quedan ordenados de la siguiente manera:
-
-```text
-13.7%
-5.2%
-2.1%
--3.4%
-```
-
-La implementación del algoritmo se encuentra en la clase `Ordenamiento` y se utiliza desde `main.cpp` cuando el usuario selecciona la opción para ordenar a los apostadores.
-
-De esta manera, el algoritmo de ordenamiento tiene una función directa dentro del problema del proyecto y no se utiliza solamente como una demostración aislada.
+En este proyecto el algoritmo compara el rendimiento de cada apostador y los acomoda de mayor a menor. De esta forma los jugadores con mejor rendimiento aparecen primero y los que tienen peor rendimiento aparecen al final.
