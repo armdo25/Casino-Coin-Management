@@ -2,8 +2,8 @@
     Segundo avance TC1031.
     El objetivo es organizar una serie de apostadores usando MergeSort y mostrar
     una clasificacion sencilla a partir de su rendimiento histórico, pero ahora
-    consultando una lista enlazada (en el primer avance se hizo mediante una
-    lista vectorizada manualmente, ahora desde un .csv).
+    consultando una lista enlazada (en el primer avance se alamcenaban los datos
+    en un vector, ahora en un .csv y se usa un vector temporal para su ordenamiento).
 */
 
 #include <iostream>
