@@ -122,7 +122,7 @@ Para el proyecto decidí utilizar MergeSort porque permite ordenar los apostador
 
 ### Selección de una estructura de datos adecuada
 
-Para el avance 2 elegí una lista simplemente enlazada porque permite agregar los apostadores conforme se leen del archivo CSV. Como la lista tiene un puntero al último nodo, no es necesario recorrerla para insertar nuevos registros.
+Para el avance 2 elegí una lista simplemente enlazada porque permite agregar los apostadores conforme se leen del archivo .csv. Como la lista tiene un puntero al último nodo, no es necesario recorrerla para insertar nuevos registros.
 
 También permite consultar los apostadores recorriendo sus nodos y buscar uno por su ID.
 
