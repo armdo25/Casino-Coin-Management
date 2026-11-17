@@ -47,7 +47,7 @@ int main() {
 
     int opcion = 0;
 
-    while (opcion != 6) {
+    while (opcion != 7) {
 
         cout << endl;
         cout << "===== CASINO COIN =====" << endl;
@@ -56,7 +56,8 @@ int main() {
         cout << "3. Mostrar apostadores comunes" << endl;
         cout << "4. Mostrar apostadores profesionales" << endl;
         cout << "5. Buscar apostador por ID" << endl;
-        cout << "6. Salir" << endl;
+        cout << "6. Guardar datos en apostadores.csv" << endl;
+        cout << "7. Salir" << endl;
         cin >> opcion;
 
         cout << endl;
@@ -103,11 +104,18 @@ int main() {
                 }
             }
         
-        } else if (opcion == 6) {
+         } else if (opcion == 6) {
+            if (guardarApostadores("apostadores.csv", apostadores)) {
+                cout << "Datos guardados en apostadores.csv" << endl;
+            } else {
+                cout << "No se pudieron guardar todos los datos." << endl;
+            }
+
+        } else if (opcion == 7) {
             cout << "Saliendo del programa..." << endl;
         
         } else {
-            cout << "Opcion no valida." << endl;
+            cout << "Opción no válida." << endl;
         }
     }
 

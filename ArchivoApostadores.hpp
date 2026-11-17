@@ -1,7 +1,7 @@
 /*
-    Este archivo declara la función que carga los apostadores
-    desde un archivo CSV a la lista enlazada.
-    Durante la lectura se validan los datos y los IDs repetidos.
+   Este archivo declara las funciones para cargar y guardar
+   los apostadores en un archivo CSV.
+   Durante la lectura se validan los datos y los IDs repetidos.
 */
 
 #ifndef ARCHIVO_APOSTADORES_HPP
@@ -16,5 +16,6 @@
 // -3: error durante la lectura.
 
 int cargarApostadores(string nombreArchivo, ListaApostadores& lista);
+bool guardarApostadores(string nombreArchivo, ListaApostadores& lista);
 
 #endif

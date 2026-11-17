@@ -97,3 +97,30 @@ int cargarApostadores(string nombreArchivo, ListaApostadores& lista) {
 
     return cargados;
 }
+
+//para guardar los registros respetando el orden actual de la lista.
+bool guardarApostadores(string nombreArchivo, ListaApostadores& lista) {
+    ofstream archivo(nombreArchivo.c_str());
+
+    if (!archivo.is_open()) {
+        return false;
+    }
+
+    archivo.precision(17);
+    archivo << "id,nombre,apuestas,totalApostado,ganancia\n";
+
+    vector<Apostador> datos = lista.pasarAVector();
+    int cantidad = datos.size();
+
+    for (int i = 0; i < cantidad; i++) {
+        archivo << datos[i].getId() << ","
+                << datos[i].getNombre() << ","
+                << datos[i].getApuestas() << ","
+                << datos[i].getTotalApostado() << ","
+                << datos[i].getGanancia() << "\n";
+    }
+
+    archivo.close();
+
+    return !archivo.fail();
+}
