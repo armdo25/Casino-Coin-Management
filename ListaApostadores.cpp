@@ -42,14 +42,20 @@ void ListaApostadores::mostrarTodos() {
 
 void ListaApostadores::mostrarPorCategoria(string categoria) {
     Nodo* actual = primero;
+    bool encontrado = false;
 
     while (actual != 0) {
         if (actual->apostador.obtenerCategoria() == categoria) {
             actual->apostador.mostrar();
             cout << endl;
+            encontrado = true;
         }
 
         actual = actual->siguiente;
+    }
+
+    if (!encontrado) {
+        cout << "No hay apostadores de esa categoría." << endl;
     }
 }
 

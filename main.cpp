@@ -1,13 +1,14 @@
 /*
-    Segundo avance TC1031.
-    El objetivo es organizar una serie de apostadores usando MergeSort y mostrar
-    una clasificacion sencilla a partir de su rendimiento histórico, pero ahora
-    consultando una lista enlazada (en el primer avance se alamcenaban los datos
-    en un vector, ahora en un .csv y se usa un vector temporal para su ordenamiento).
+    Tercer avance TC1031.
+    El programa carga los apostadores desde un archivo CSV y los
+    almacena en una lista enlazada. Permite ordenarlos por rendimiento
+    con MergeSort, consultar sus categorías, buscar por ID mediante
+    búsqueda binaria y guardar los datos en el archivo.
 */
 
 #include <iostream>
 #include <vector>
+#include <sstream>
 #include "Apostador.hpp"
 #include "Ordenamiento.hpp"
 #include "ListaApostadores.hpp"
@@ -16,18 +17,35 @@
 
 using namespace std;
 
+bool leerEntero(int& numero) {
+    string linea;
+
+    if (!getline(cin, linea)) {
+        return false;
+    }
+
+    stringstream entrada(linea);
+    char extra;
+
+    if (!(entrada >> numero) || (entrada >> extra)) {
+        return false;
+    }
+
+    return true;
+}
+
 int main() {
     ListaApostadores apostadores;
     int cargados = cargarApostadores("apostadores.csv", apostadores);
 
-        if (cargados < 0) {
+    if (cargados < 0) {
         if (cargados == -1) {
             cout << "No se pudo abrir apostadores.csv" << endl;
         } else if (cargados == -2) {
-            cout << "El archivo está vacío o el encabezado es incorrecto."
+            cout << "El archivo esta vacio o el encabezado es incorrecto."
                  << endl;
         } else {
-            cout << "Ocurrió un error durante la lectura del archivo."
+            cout << "Ocurrio un error durante la lectura del archivo."
                  << endl;
         }
 
@@ -44,11 +62,9 @@ int main() {
     indice.construir(apostadores.pasarAVector());
 
     Ordenamiento ordenamiento;
-
     int opcion = 0;
 
     while (opcion != 7) {
-
         cout << endl;
         cout << "===== CASINO COIN =====" << endl;
         cout << "1. Mostrar apostadores" << endl;
@@ -58,53 +74,84 @@ int main() {
         cout << "5. Buscar apostador por ID" << endl;
         cout << "6. Guardar datos en apostadores.csv" << endl;
         cout << "7. Salir" << endl;
-        cin >> opcion;
+        cout << "Opcion: ";
+
+        if (!leerEntero(opcion)) {
+            if (cin.fail()) {
+                cout << "Fin de la entrada. Saliendo del programa..."
+                     << endl;
+                break;
+            }
+
+            opcion = 0;
+            cout << "Ingresa un numero entero del 1 al 7." << endl;
+            continue;
+        }
+
+        if (opcion < 1 || opcion > 7) {
+            cout << "Opcion no valida. Elige del 1 al 7." << endl;
+            continue;
+        }
+
+        if (opcion != 7 && apostadores.cantidad() == 0) {
+            cout << "No hay apostadores cargados para realizar esta opcion."
+                 << endl;
+            continue;
+        }
 
         cout << endl;
 
         if (opcion == 1) {
             apostadores.mostrarTodos();
-        
+
         } else if (opcion == 2) {
             vector<Apostador> datosOrdenados = apostadores.pasarAVector();
             ordenamiento.ordenar(datosOrdenados);
             apostadores.acomodar(datosOrdenados);
-        
+
             cout << "Apostadores ordenados por rendimiento:" << endl;
             cout << endl;
             apostadores.mostrarTodos();
-        
+
         } else if (opcion == 3) {
             cout << "Apostadores comunes:" << endl;
             cout << endl;
             apostadores.mostrarPorCategoria("Comun");
-        
+
         } else if (opcion == 4) {
             cout << "Apostadores profesionales:" << endl;
             cout << endl;
             apostadores.mostrarPorCategoria("Profesional");
-        
+
         } else if (opcion == 5) {
             int id;
             cout << "ID del apostador: ";
-            cin >> id;
-        
-            if (cin.fail()) {
-                cin.clear();
-                cin.ignore(1000, '\n');
-                cout << "ID no valido." << endl;
-            } else {
-                Apostador* encontrado = indice.buscarPorId(id);
-        
-                if (encontrado != 0) {
-                    cout << endl;
-                    encontrado->mostrar();
-                } else {
-                    cout << "No se encontro ese apostador." << endl;
+
+            if (!leerEntero(id)) {
+                if (cin.fail()) {
+                    cout << "Fin de la entrada. Saliendo del programa..."
+                         << endl;
+                    break;
                 }
+
+                cout << "ID no valido. Ingresa un entero positivo." << endl;
+                continue;
             }
-        
-         } else if (opcion == 6) {
+
+            if (id <= 0) {
+                cout << "ID no valido. Ingresa un entero positivo." << endl;
+                continue;
+            }
+
+            Apostador* encontrado = indice.buscarPorId(id);
+
+            if (encontrado != 0) {
+                encontrado->mostrar();
+            } else {
+                cout << "No se encontro ese apostador." << endl;
+            }
+
+        } else if (opcion == 6) {
             if (guardarApostadores("apostadores.csv", apostadores)) {
                 cout << "Datos guardados en apostadores.csv" << endl;
             } else {
@@ -113,9 +160,6 @@ int main() {
 
         } else if (opcion == 7) {
             cout << "Saliendo del programa..." << endl;
-        
-        } else {
-            cout << "Opción no válida." << endl;
         }
     }
 
