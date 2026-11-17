@@ -37,7 +37,7 @@ void Ordenamiento::merge(vector<Apostador>& apostadores, int inicio,
     int totalIzquierda = izquierda.size();
     int totalDerecha = derecha.size();
 
-    while (i < totalIzquierda.size() && j < totalDerecha.size()) {
+    while (i < totalIzquierda && j < totalDerecha) {
 
         if (izquierda[i].calcularRendimiento() >=
             derecha[j].calcularRendimiento()) {
@@ -52,13 +52,13 @@ void Ordenamiento::merge(vector<Apostador>& apostadores, int inicio,
         k++;
     }
 
-    while (i < totalIzquierda.size()) {
+    while (i < totalIzquierda) {
         apostadores[k] = izquierda[i];
         i++;
         k++;
     }
 
-    while (j < totalDerecha.size()) {
+    while (j < totalDerecha) {
         apostadores[k] = derecha[j];
         j++;
         k++;
