@@ -13,11 +13,12 @@ using namespace std;
 
 class Ordenamiento {
 private:
-    void merge(vector<Apostador>&, int, int, int);
-    void mergeSort(vector<Apostador>&, int, int);
+    void merge(vector<Apostador>&, int, int, int, bool);
+    void mergeSort(vector<Apostador>&, int, int, bool);
 
 public:
     void ordenar(vector<Apostador>&);
+    void ordenarPorId(vector<Apostador>&);
 };
 
 #endif
