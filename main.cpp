@@ -20,13 +20,25 @@ int main() {
     ListaApostadores apostadores;
     int cargados = cargarApostadores("apostadores.csv", apostadores);
 
-    if (cargados == -1) {
-    cout << "No se pudo abrir apostadores.csv" << endl;
-    cout << "Vuelve a intentar." << endl;
-    return 1;
-}
+        if (cargados < 0) {
+        if (cargados == -1) {
+            cout << "No se pudo abrir apostadores.csv" << endl;
+        } else if (cargados == -2) {
+            cout << "El archivo está vacío o el encabezado es incorrecto."
+                 << endl;
+        } else {
+            cout << "Ocurrió un error durante la lectura del archivo."
+                 << endl;
+        }
 
-    cout << "Se cargaron bien los datos." << endl;
+        return 1;
+    }
+
+    cout << "Apostadores cargados: " << cargados << endl;
+
+    if (cargados == 0) {
+        cout << "No hay apostadores validos para consultar." << endl;
+    }
 
     IndiceApostadores indice;
     indice.construir(apostadores.pasarAVector());
