@@ -42,7 +42,6 @@ int main() {
         cout << "5. Buscar apostador por ID" << endl;
         cout << "6. Salir" << endl;
         cin >> opcion;
-}
 
         cout << endl;
 
@@ -94,7 +93,7 @@ int main() {
         } else {
             cout << "Opcion no valida." << endl;
         }
-            }
+    }
 
     return 0;
 }
