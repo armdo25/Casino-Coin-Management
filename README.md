@@ -48,7 +48,7 @@ También se agregó una búsqueda por ID y se conservaron las consultas de apost
 Para compilar el programa se utiliza:
 
 ```text
-g++ main.cpp Apostador.cpp Ordenamiento.cpp ListaApostadores.cpp ArchivoApostadores.cpp -o casino
+g++ main.cpp Apostador.cpp Ordenamiento.cpp ListaApostadores.cpp ArchivoApostadores.cpp IndiceApostadores.cpp -o casino
 ```
 
 

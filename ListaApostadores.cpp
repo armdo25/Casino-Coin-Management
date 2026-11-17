@@ -16,7 +16,6 @@ ListaApostadores::~ListaApostadores() {
     }
 }
 
-// Agrega cada apostador al final de la lista.
 void ListaApostadores::agregar(Apostador nuevo) {
     Nodo* nodo = new Nodo(nuevo);
 
@@ -31,7 +30,6 @@ void ListaApostadores::agregar(Apostador nuevo) {
     total++;
 }
 
-// Recorre la lista para mostrar todos los registros.
 void ListaApostadores::mostrarTodos() {
     Nodo* actual = primero;
 
@@ -42,7 +40,6 @@ void ListaApostadores::mostrarTodos() {
     }
 }
 
-// Muestra solamente los apostadores de la categoria indicada.
 void ListaApostadores::mostrarPorCategoria(string categoria) {
     Nodo* actual = primero;
 
@@ -56,7 +53,6 @@ void ListaApostadores::mostrarPorCategoria(string categoria) {
     }
 }
 
-// Busca un apostador por ID y regresa 0 si no existe.
 Apostador* ListaApostadores::buscarPorId(int id) {
     Nodo* actual = primero;
 
@@ -71,7 +67,6 @@ Apostador* ListaApostadores::buscarPorId(int id) {
     return 0;
 }
 
-// Pasa los datos a un vector para usar el MergeSort del avance 1.
 vector<Apostador> ListaApostadores::pasarAVector() {
     vector<Apostador> datos;
     Nodo* actual = primero;
@@ -84,7 +79,6 @@ vector<Apostador> ListaApostadores::pasarAVector() {
     return datos;
 }
 
-// Guarda el orden del vector nuevamente en los nodos de la lista.
 void ListaApostadores::acomodar(vector<Apostador>& ordenados) {
     Nodo* actual = primero;
     int cantidadOrdenados = ordenados.size();

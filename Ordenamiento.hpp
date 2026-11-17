@@ -1,6 +1,7 @@
 /*
-    La clase Ordenamiento contiene el algoritmo MergeSort y 
-    el vector de apostadores se ordena de mayor a menor de acuerdo con su rendimiento.
+    La clase Ordenamiento contiene el algoritmo MergeSort y permite
+    ordenar el vector de apostadores de mayor a menor por rendimiento
+    o de menor a mayor por ID.
 */
 
 #ifndef ORDENAMIENTO_HPP

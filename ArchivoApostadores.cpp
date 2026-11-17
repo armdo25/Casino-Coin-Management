@@ -2,7 +2,7 @@
 #include <sstream>
 #include "ArchivoApostadores.hpp"
 
-// Lee cada fila del CSV y agrega el apostador a la lista.
+
 int cargarApostadores(string nombreArchivo, ListaApostadores& lista) {
     ifstream archivo(nombreArchivo.c_str());
 
@@ -11,7 +11,7 @@ int cargarApostadores(string nombreArchivo, ListaApostadores& lista) {
     }
 
     string linea;
-    getline(archivo, linea); // Encabezados del archivo.
+    getline(archivo, linea); 
     int cargados = 0;
 
     while (getline(archivo, linea)) {

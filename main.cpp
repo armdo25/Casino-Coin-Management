@@ -12,6 +12,7 @@
 #include "Ordenamiento.hpp"
 #include "ListaApostadores.hpp"
 #include "ArchivoApostadores.hpp"
+#include "IndiceApostadores.hpp"
 
 using namespace std;
 
@@ -26,6 +27,9 @@ int main() {
 }
 
     cout << "Se cargaron bien los datos." << endl;
+
+    IndiceApostadores indice;
+    indice.construir(apostadores.pasarAVector());
 
     Ordenamiento ordenamiento;
 
@@ -77,7 +81,7 @@ int main() {
                 cin.ignore(1000, '\n');
                 cout << "ID no valido." << endl;
             } else {
-                Apostador* encontrado = apostadores.buscarPorId(id);
+                Apostador* encontrado = indice.buscarPorId(id);
         
                 if (encontrado != 0) {
                     cout << endl;

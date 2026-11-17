@@ -2,24 +2,30 @@
 
 void Ordenamiento::ordenar(vector<Apostador>& apostadores) {
     if (apostadores.size() > 1) {
-        mergeSort(apostadores, 0, apostadores.size() - 1);
+        mergeSort(apostadores, 0, apostadores.size() - 1, false);
     }
 }
 
-void Ordenamiento::mergeSort(vector<Apostador>& apostadores, int inicio, int fin) {
+void Ordenamiento::ordenarPorId(vector<Apostador>& apostadores) {
+    if (apostadores.size() > 1) {
+        mergeSort(apostadores, 0, apostadores.size() - 1, true);
+    }
+}
+
+void Ordenamiento::mergeSort(vector<Apostador>& apostadores,
+                            int inicio, int fin, bool porId) {
     if (inicio < fin) {
         int mitad = (inicio + fin) / 2;
 
-        mergeSort(apostadores, inicio, mitad);
-        mergeSort(apostadores, mitad + 1, fin);
+        mergeSort(apostadores, inicio, mitad, porId);
+        mergeSort(apostadores, mitad + 1, fin, porId);
 
-        merge(apostadores, inicio, mitad, fin);
+        merge(apostadores, inicio, mitad, fin, porId);
     }
 }
 
-void Ordenamiento::merge(vector<Apostador>& apostadores, int inicio,
-                          int mitad, int fin) {
-
+void Ordenamiento::merge(vector<Apostador>& apostadores,
+                        int inicio, int mitad, int fin, bool porId) {
     vector<Apostador> izquierda;
     vector<Apostador> derecha;
 
@@ -38,10 +44,16 @@ void Ordenamiento::merge(vector<Apostador>& apostadores, int inicio,
     int totalDerecha = derecha.size();
 
     while (i < totalIzquierda && j < totalDerecha) {
+        bool tomarIzquierda;
 
-        if (izquierda[i].calcularRendimiento() >=
-            derecha[j].calcularRendimiento()) {
+        if (porId) {
+            tomarIzquierda = izquierda[i].getId() <= derecha[j].getId();
+        } else {
+            tomarIzquierda = izquierda[i].calcularRendimiento() >=
+                             derecha[j].calcularRendimiento();
+        }
 
+        if (tomarIzquierda) {
             apostadores[k] = izquierda[i];
             i++;
         } else {
